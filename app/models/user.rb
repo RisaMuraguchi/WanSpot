@@ -32,12 +32,10 @@ class User < ApplicationRecord
     relationships.create(followed_id: user.id)
   end
 
-　# フォローを外すときの処理
   def unfollow(user)
     relationships.find_by(followed_id: user.id).destroy
   end
 
-　# フォローしているか判定
   def following?(user)
     followings.include?(user)
   end

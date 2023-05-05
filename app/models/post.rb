@@ -5,6 +5,6 @@ class Post < ApplicationRecord
   has_many :liked_users, through: :likes, source: :user
   has_many :comments, dependent: :destroy
 
-　validates :caption, presence: true
+  validates :caption, presence: true
   validates :image, presence: true
 end

@@ -7,8 +7,11 @@ class Post < ApplicationRecord
 
   validates :caption, presence: true
   validates :image, presence: true
-  
-  
+
+  def liked_by?(user)
+    likes.where(user_id: user.id).exists?
+  end
+
   def get_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
@@ -16,5 +19,5 @@ class Post < ApplicationRecord
     end
     image
   end
-  
+
 end

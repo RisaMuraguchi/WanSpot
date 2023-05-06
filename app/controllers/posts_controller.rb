@@ -22,7 +22,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @user = @post.user
-    @comment = PostComment.new
+    @comment = Comment.new
   end
 
   def edit
@@ -47,7 +47,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:caption)
+    params.require(:post).permit(:caption, :image, :user_id)
   end
 
 end

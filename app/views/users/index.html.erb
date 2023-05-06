@@ -1,2 +1,35 @@
+<div class="container">
+  <div class="row my-3">
+    <div class="col-sm-8 px-sm-0 offset-sm-1">
+     <h2>Users</h2>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-sm-10 px-sm-0 offset-sm-1">
+        <table class="table table-hover">
+          <thead>
+            <tr class="table-primary">
+              <th></th>
+              <th>image</th>
+              <th>name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+            <tr class="table-primary">
+              <td><%= image_tag user.get_profile_image(80,80) %></td>
+              <td><%= user.name %></td>
+              <td>
+                <%= link_to"Show", user_path(user.id) %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>
+
+
   <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
 

@@ -11,19 +11,10 @@
           <span><i class="fas fa-user"></i>  <%= @post.user.name %> ｜ </span>
           <span><i class="fa fa-calendar"></i> <%= @post.created_at.strftime('%Y/%m/%d') %> ｜ </span>
           <span><i class="fa fa-comment"></i> <%= link_to "#{@post.comments.count}", post_path(@post.id) %> ｜ </span>
-          <% if @post.liked_by?(current_user) %>
-            <span>
-              <%= link_to(post_likes_path(@post), method: :delete) do %>
-                <i class="fa fa-heart" aria-hidden="true"></i> <%= @post.likes.count %>
-              <% end %>
-            </span>
-            <% else %>
-            <span>
-              <%= link_to(post_likes_path(@post), method: :post) do %>
-                <i class="fa fa-heart" aria-hidden="true"></i> <%= @post.likes.count %>
-              <% end %>
-            </span>
-          <% end %>
+          <!--いいねボタン部分テンプレート-->
+          <span>
+          　<%= render "likes/like", post: @post %>
+          </span id="like_buttons_<%= @post.id %>">
           <% if @post.user == current_user %>
             <span> ｜ </span><%= link_to "削除", post_path(@post), method: :delete %>
           <% end %>

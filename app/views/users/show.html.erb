@@ -1,42 +1,43 @@
-<div class="profile-container w-75 d-flex mx-auto justify-content-around align-items-center border-bottom py-5">
-   <%= image_tag @user.get_profile_image(100,100), class:"rounded-circle";  %>
-  <h5 class="profile-name display-4"><%= @user.name %></h5>
-  <% if @user.id == current_user.id %>
-    <div class="mt-auto">
-    <p><%= link_to "プロフィール編集", edit_user_path(@user), class:"text-dark" %></p>
+<div class="container mt-5 mb-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-sm">
+        <div class="card-header bg-white border-bottom-0">
+          <%= image_tag @user.get_profile_image(100,100), class:"rounded-circle", width: "50", height: "50" %>
+          <span class="h5 ml-3 mb-0"><%= @user.name %></span>
+        </div>
+        <div class="card-body">
+          <table class="table mb-0">
+            <tbody>
+              <tr>
+                <td class="border-top-0"><strong>Name</strong></td>
+                <td class="border-top-0"><%= @user.name %></td>
+              </tr>
+              <tr>
+                <td><strong>Profile</strong></td>
+                <td><%= @user.profile %></td>
+              </tr>
+              <tr>
+                <td><strong>Followers</strong></td>
+                <td><%= link_to @user.followers.count, user_followers_path(@user) %></td>
+              </tr>
+              <tr>
+                <td><strong>Following</strong></td>
+                <td><%= link_to @user.followings.count, user_followings_path(@user) %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <% if current_user == @user %>
+          <div class="card-footer bg-white text-right">
+            <%= link_to "Edit Profile", edit_user_path(@user), class:"btn btn-outline-secondary" %>
+          </div>
+        <% end %>
+      </div>
     </div>
-  <% end %>
-  
-    <% if current_user != @user %>
-     <% if current_user.following?(@user) %>
-      <%= link_to "フォロー外す", user_relationships_path(@user.id), method: :delete, class: "btn btn-info" %>
-     <% else %>
-      <%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class: "btn btn-success" %>
-     <% end %>
-  <% end %>
+  </div>
 </div>
 
-<table class="table">
-        <tbody>
-          <tr></tr>
-          <tr>
-            <th>name</th>
-            <th><%= @user.name %></th>
-          </tr>
-          <tr>
-            <th>profile</th>
-            <th><%= @user.profile %></th>
-          </tr>
-          <tr>
-           <th>follows</th>
-           <th><%= link_to @user.followings.count, user_followings_path(@user) %></th>
-          </tr>
-          <tr>
-           <th>followers</th>
-           <th><%= link_to @user.followers.count, user_followers_path(@user) %></th>
-          </tr>
-        </tbody>
-  </table>
 
 <!--自分の投稿一覧-->
 <%#= render 'post_images/list', posts: @posts %>

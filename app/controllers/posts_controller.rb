@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
   end
-  
+
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
@@ -42,6 +42,19 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
     redirect_to posts_path
+  end
+
+  #キーワード検索
+  def search
+    # 入力した検索ワードをparams[:keyword]で取得
+    if params[:keyword].present?
+    # 投稿のキャプションで検索
+      @posts = Post.where('caption LIKE ?', "%#{params[:keyword]}%")
+      @keyword = params[:keyword]
+    else
+    # 何も入力せずに検索ボタンをクリックした場合は全ての投稿を取得
+      @posts = Post.all
+    end
   end
 
   private

@@ -1,32 +1,34 @@
-<h2>Follow Users</h2>
-<% if @users.exists? %>
-  <table class='table'>
-  <thead>
-    <tr>
-      <th>image</th>
-      <th>name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= image_tag user.get_profile_image(50, 50) %></td>
-        <td><%= user.name %></td>
-        
-        <% if current_user != user%>
-        <% if current_user.following?(user) %>
-         <%= link_to "フォロー外す", user_relationships_path(user.id), method: :delete, class: "btn btn-info" %>
-        <% else %>
-         <%= link_to "フォローする", user_relationships_path(user.id), method: :post, class: "btn btn-success" %>
+<div class="container my-5">
+  <h2 class="text-center mb-4">Follow Users</h2>
+  <% if @users.exists? %>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th colspan="2">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= image_tag user.get_profile_image(50, 50), class: "rounded-circle" %></td>
+            <td><%= user.name %></td>
+            <td>
+              <% if current_user != user%>
+                <% if current_user.following?(user) %>
+                  <%= link_to "Unfollow", user_relationships_path(user.id), method: :delete, class: "btn btn-info btn-sm" %>
+                <% else %>
+                  <%= link_to "Follow", user_relationships_path(user.id), method: :post, class: "btn btn-success btn-sm" %>
+                <% end %>
+              <% end %>
+            </td>
+            <td><%= link_to 'Show', user, class: "user_#{user.id} btn btn-primary btn-sm" %></td>
+          </tr>
         <% end %>
-        <% end %>
-
-        <td><%= link_to 'Show', user, class: "user_#{user.id}" %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<% else %>
-  <p>ユーザーはいません</p>
-<% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p class="text-center">No users found</p>
+  <% end %>
+</div>

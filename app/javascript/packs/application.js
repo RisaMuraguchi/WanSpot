@@ -14,6 +14,12 @@ import "bootstrap";
 import "../stylesheets/application"
 import '@fortawesome/fontawesome-free/js/all'
 
+// 画像プレビューのために追記
+require("@rails/ujs").start()
+require("@rails/activestorage").start()
+require("channels")
+require('./preview')
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

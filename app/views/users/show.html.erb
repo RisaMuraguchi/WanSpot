@@ -28,7 +28,7 @@
             </tbody>
           </table>
         </div>
-        <% if current_user == @user　&& !current_user.guest? %>
+        <% if current_user == @user && !@user.email.include?("guest") %>
           <div class="card-footer bg-white text-right">
             <%= link_to "Edit Profile", edit_user_path(@user), class:"btn btn-outline-secondary" %>
           </div>

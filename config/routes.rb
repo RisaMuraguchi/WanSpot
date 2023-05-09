@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
-  # devise関係のルーティング後で直す
-  devise_for :admins
+  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+  sessions: "admin/sessions"
+}
 
   devise_for :users, skip: [:passwords], controllers: {
   registrations: "public/registrations",
@@ -13,6 +14,12 @@ Rails.application.routes.draw do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
   end
 
+  # 管理者側
+  namespace :admin do
+    resources :users, only: [:index]
+  end
+
+  # エンドユーザー
   root :to =>"homes#top"
 
   resources :posts do

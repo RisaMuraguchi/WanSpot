@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   # 管理者側
   namespace :admin do
-    resources :users, only: [:index]
+    resources :users, only: [:index, :show, :edit, :update]
   end
 
   # エンドユーザー
@@ -34,6 +34,9 @@ Rails.application.routes.draw do
     resource :relationships, only: [:create, :destroy]
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
+    member do
+      get 'likes'
+    end
   end
 
 

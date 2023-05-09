@@ -28,21 +28,10 @@
             </tbody>
           </table>
         </div>
-
-        <div class="card-footer">
-          <div class="d-flex justify-content-between">
-            <%= link_to "いいねした投稿", likes_user_path(@user), class:"btn btn-outline-secondary text-left" %>
-            <% if current_user == @user && !@user.email.include?("guest") %>
-              <%= link_to "Edit Profile", edit_user_path(@user), class:"btn btn-outline-secondary" %>
-            <% end %>
+          <div class="card-footer bg-white text-right">
+            <%= link_to "Edit Profile", edit_admin_user_path(@user), class:"btn btn-outline-secondary" %>
           </div>
-        </div>
-
       </div>
     </div>
   </div>
 </div>
-
-
-<!--自分の投稿一覧-->
-<%#= render 'post_images/list', posts: @posts %>

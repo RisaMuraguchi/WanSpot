@@ -1,0 +1,18 @@
+<div class="card-list-container py-5" style="padding-left: 15px; padding-right: 15px; display: flex; flex-wrap: wrap;">
+  <div class='post-lists' style="display: flex; justify-content: space-between; flex-wrap: wrap; width: 100%;">
+    <% @posts.each do |post| %>
+      <div class="card mt-4 shadow-lg" style="width: 300px; height: 400px; overflow-y: auto;">
+          <%= image_tag post.get_image, class:"card-img-top" %>
+        <div class="card-body" style="max-height: 300px;">
+          <div class="row">
+            <div class="col-10">
+              <p class="card-text">caption：<%= post.caption %></p>
+              <p class="card-text">name：<%= post.user.name %></p>
+              <p class="card-text"><%= link_to "削除", admin_post_path(@user, @post), method: :delete, data: { confirm: "本当に削除しますか？" } %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

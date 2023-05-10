@@ -30,6 +30,7 @@
         </div>
           <div class="card-footer bg-white text-right">
             <%= link_to "Edit Profile", edit_admin_user_path(@user), class:"btn btn-outline-secondary" %>
+            <%= link_to "投稿一覧", admin_post_path(@user.id), class: "btn btn-outline-secondary" %>
           </div>
       </div>
     </div>

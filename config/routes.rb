@@ -31,6 +31,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/post/hashtag/:name', to: "posts#hashtag"
+
   resources :users, only: [:index,:show,:edit,:update] do
     resource :relationships, only: [:create, :destroy]
     get 'followings' => 'relationships#followings', as: 'followings'

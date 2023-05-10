@@ -1,0 +1,21 @@
+<!--<h2>ハッシュタグ #<%#= @tag.hashname %></h2>-->
+<!--  <ul>-->
+<!--    <%# @posts.each do |post| %>-->
+<!--      <li>-->
+<!--        <%#= link_to post_path(post.id) do %>-->
+<!--          <%#= post.image.split("#")[0] %>-->
+<!--        <%# end %>-->
+<!--  </ul>-->
+<!--    <%# end %>-->
+
+<h2>ハッシュタグ #<%= @tag.hashname %></h2>
+  <ul>
+    <% @posts.each do |post| %>
+        <%= link_to post_path(post.id) do %>
+          <% if post.image.attached? %>
+            <%= image_tag post.image.variant(gravity: :center, resize: "640x640^", crop: "640x640+0+0") %>
+          <% end %>
+
+        <% end %>
+    <% end %>
+  </ul>

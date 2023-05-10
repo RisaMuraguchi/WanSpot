@@ -57,6 +57,18 @@ class PostsController < ApplicationController
     end
   end
 
+  # ハッシュタグ
+  def hashtag
+    @user = current_user
+    @tag = Hashtag.find_by(hashname: params[:name])
+    @posts = @tag.posts
+    hashtags = []
+    @posts.each do |post|
+      hashtags += post.caption.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
+    end
+    @hashtags = hashtags.uniq
+  end
+
   private
 
   def post_params

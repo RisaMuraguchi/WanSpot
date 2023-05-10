@@ -18,7 +18,7 @@
           </span>
 
           <% if @post.user == current_user %>
-            <span> ｜ </span><%= link_to "削除", post_path(@post), method: :delete %>
+            <span> ｜ </span><%= link_to "削除", post_path(@post), method: :delete, data: { confirm: "本当に削除しますか？" } %>
           <% end %>
         </div>
       </div>

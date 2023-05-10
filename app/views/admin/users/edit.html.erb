@@ -3,7 +3,7 @@
     <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto text-center shadow-lg rounded px-0 my-5">
       <h5 class="bg-light py-4 mb-0">プロフィール編集</h5>
       <div class="form-body p-4">
-        <%= form_with model: @user, local: true do |f| %>
+        <%= form_with model: @user, url: admin_user_path(@user.id), local: :true, method: :put do |f| %>
 
           <div class="form-group">
             <%= f.label :name, "ニックネーム" %>

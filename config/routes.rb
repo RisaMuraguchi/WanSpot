@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   end
 
   get '/post/hashtag/:name', to: "posts#hashtag"
+  get '/post/map', to: "posts#map"
 
   resources :users, only: [:index,:show,:edit,:update] do
     resource :relationships, only: [:create, :destroy]

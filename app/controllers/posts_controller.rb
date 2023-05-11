@@ -69,6 +69,9 @@ class PostsController < ApplicationController
     @hashtags = hashtags.uniq
   end
 
+  def map
+  end
+
   private
 
   def post_params

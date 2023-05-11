@@ -26,8 +26,13 @@
           <div class="form-group">
             <%= f.submit 'Create Post', class: "btn btn-success" %>
           </div>
+
         <% end %>
       </div>
     </div>
   </div>
 </div>
+
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['SECRET_KEY'] %>&language=ja&libraries=places">
+</script>

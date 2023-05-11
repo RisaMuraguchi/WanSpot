@@ -72,6 +72,20 @@ class PostsController < ApplicationController
   def map
   end
 
+  # 住所の自動補完
+  def autocomplete
+#    places = GooglePlaces::Autocomplete.new(ENV['SECRET_KEY']).predictions(params[:term])
+#    render json: places.map { |place| { id: place.place_id, value: place.description } }
+
+#    client = GooglePlacesAutocomplete::Client.new(:api_key => ENV['SECRET_KEY'])
+#    autocomplete = client.autocomplete(:input => params[:term], :types => "cities")
+
+    client = GooglePlaces::Client.new(ENV['SECRET_KEY'])
+    autocomplete = client.predictions_by_input(params[:term], lat: 0, lng: 0, radius: 20000000, types: 'geocode', language: :ja)
+    render json: "{test:test}"
+#    render json: autocomplete["predictions"][0]["description"].split(",")
+  end
+
   private
 
   def post_params

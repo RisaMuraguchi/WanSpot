@@ -1,6 +1,6 @@
 <div class="container mt-5 mb-5">
-  <div class="row justify-content-center">
-    <div class="col-md-8 col-lg-6">
+  <div class="row">
+    <div class="col-md-3 col-sm-3">
       <div class="card shadow-sm">
         <div class="card-header bg-white border-bottom-0">
           <%= image_tag @user.get_profile_image(100,100), class:"rounded-circle", width: "50", height: "50" %>
@@ -31,9 +31,9 @@
 
         <div class="card-footer">
           <div class="d-flex justify-content-between">
-            <%= link_to "いいねした投稿", likes_user_path(@user), class:"btn btn-outline-secondary text-left" %>
+            <%= link_to "いいねした投稿", likes_user_path(@user), class:"btn btn-outline-secondary text-left btn-sm" %>
             <% if current_user == @user && !@user.email.include?("guest") %>
-              <%= link_to "Edit Profile", edit_user_path(@user), class:"btn btn-outline-secondary" %>
+              <%= link_to "Edit Profile", edit_user_path(@user), class:"btn btn-outline-secondary btn-sm" %>
             <% end %>
           </div>
         </div>

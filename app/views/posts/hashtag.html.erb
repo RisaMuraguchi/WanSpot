@@ -1,21 +1,16 @@
-<!--<h2>ハッシュタグ #<%#= @tag.hashname %></h2>-->
-<!--  <ul>-->
-<!--    <%# @posts.each do |post| %>-->
-<!--      <li>-->
-<!--        <%#= link_to post_path(post.id) do %>-->
-<!--          <%#= post.image.split("#")[0] %>-->
-<!--        <%# end %>-->
-<!--  </ul>-->
-<!--    <%# end %>-->
+<div class="card-list-container py-5" style="padding-left: 15px; padding-right: 15px; display: flex; flex-wrap: wrap;">
+  <h2 class='title'>ハッシュタグ #<%= @tag.hashname %></h2>
 
-<h2>ハッシュタグ #<%= @tag.hashname %></h2>
-  <ul>
-    <% @posts.each do |post| %>
-        <%= link_to post_path(post.id) do %>
-          <% if post.image.attached? %>
-            <%= image_tag post.image.variant(gravity: :center, resize: "640x640^", crop: "640x640+0+0") %>
+
+    <div class='post-lists' style="display: flex; justify-content: space-between; flex-wrap: wrap; width: 100%;">
+      <% @posts.each do |post| %>
+        <div class="card mt-4 shadow-lg" style="width: 200px;">
+          <%= link_to post_path(post.id) do %>
+            <%= image_tag post.get_image, class: "card-img-top" %>
           <% end %>
+        </div>
+      <% end %>
+    </div>
 
-        <% end %>
-    <% end %>
-  </ul>
+
+</div>

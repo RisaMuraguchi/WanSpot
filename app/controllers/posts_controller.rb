@@ -17,6 +17,8 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
     @user = current_user
+    # 退会している人
+    # @posts = Post.includes(:user).where(users: { user_status: false })
   end
 
   def show
@@ -70,21 +72,16 @@ class PostsController < ApplicationController
   end
 
   def map
+    @posts = Post.all
   end
 
   # 住所の自動補完
-  def autocomplete
-#    places = GooglePlaces::Autocomplete.new(ENV['SECRET_KEY']).predictions(params[:term])
-#    render json: places.map { |place| { id: place.place_id, value: place.description } }
-
-#    client = GooglePlacesAutocomplete::Client.new(:api_key => ENV['SECRET_KEY'])
-#    autocomplete = client.autocomplete(:input => params[:term], :types => "cities")
-
-    client = GooglePlaces::Client.new(ENV['SECRET_KEY'])
-    autocomplete = client.predictions_by_input(params[:term], lat: 0, lng: 0, radius: 20000000, types: 'geocode', language: :ja)
-    render json: "{test:test}"
-#    render json: autocomplete["predictions"][0]["description"].split(",")
-  end
+  # def autocomplete
+  #   client = GooglePlaces::Client.new(ENV['SECRET_KEY'])
+  #   autocomplete = client.predictions_by_input(params[:term], lat: 0, lng: 0, radius: 20000000, types: 'geocode', language: :ja)
+  #   render json: "{test:test}"
+  #   # render json: autocomplete["predictions"][0]["description"].split(",")
+  # end
 
   private
 

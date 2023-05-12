@@ -23,35 +23,35 @@ require('./preview')
 require('jquery-ui/ui/widgets/autocomplete');
 
 // 住所の入力自動補完
-import $ from 'jquery';
-import 'jquery-ui/ui/widgets/autocomplete';
+// import $ from 'jquery';
+// import 'jquery-ui/ui/widgets/autocomplete';
 
-$(document).on('turbolinks:load', function() {
+// $(document).on('turbolinks:load', function() {
 
-    function initAutocomplete() {
-      //対応させるテキストボックス
-      var input = document.getElementById('post_address');
-      //プレイスを検索する領域
-      var LatLngFrom = new google.maps.LatLng(35.692195,139.7576653);
-      var LatLngTo   = new google.maps.LatLng(35.696157,139.7525771);
-      var bounds = new google.maps.LatLngBounds(LatLngFrom, LatLngTo);
-  　　//オートコンプリートのオプション
-      var options = {
-          types: ['(regions)'],                      // 検索タイプ
-          bounds: bounds,                            // 範囲優先検索
-          componentRestrictions: {country: 'jp'}     // 日本国内の住所のみ
-      };
-      autocomplete = new google.maps.places.Autocomplete( input, options);
-  }
+//     function initAutocomplete() {
+//       //対応させるテキストボックス
+//       var input = document.getElementById('post_address');
+//       //プレイスを検索する領域
+//       var LatLngFrom = new google.maps.LatLng(35.692195,139.7576653);
+//       var LatLngTo   = new google.maps.LatLng(35.696157,139.7525771);
+//       var bounds = new google.maps.LatLngBounds(LatLngFrom, LatLngTo);
+//   　　//オートコンプリートのオプション
+//       var options = {
+//           types: ['(regions)'],                      // 検索タイプ
+//           bounds: bounds,                            // 範囲優先検索
+//           componentRestrictions: {country: 'jp'}     // 日本国内の住所のみ
+//       };
+//       autocomplete = new google.maps.places.Autocomplete( input, options);
+//   }
 
+// 　initAutocomplete(); // initAutocomplete関数を呼び出してオートコンプリートを初期化する
 
+//   $('.address').autocomplete({
 
-  $('.address').autocomplete({
-
-    source: initAutocomplete(),
-    minLength: 2
-  });
-});
+//     source: initAutocomplete(),
+//     minLength: 2
+//   });
+// });
 
 
 Rails.start()

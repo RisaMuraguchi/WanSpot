@@ -6,8 +6,8 @@ class Post < ApplicationRecord
   has_many :liked_users, through: :likes, source: :user
   has_many :comments, dependent: :destroy
 
-  has_many :post_hashtag_relations
-  has_many :hashtags, through: :post_hashtag_relations
+  has_many :post_hashtag_relations, dependent: :destroy
+  has_many :hashtags, through: :post_hashtag_relations, dependent: :destroy
 
   validates :caption, presence: true
   validates :image, presence: true

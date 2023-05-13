@@ -10,7 +10,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to post_path(@post.id), notice: "You have created post successfully."
     else
-      render :index
+      render :new
     end
   end
 
@@ -86,7 +86,9 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:caption, :image, :user_id, :address, :lat, :lng)
+    params.require(:post).permit(:caption, :image, :user_id, :address, :latitude, :longitude)
   end
 
 end
+
+

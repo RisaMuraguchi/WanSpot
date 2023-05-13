@@ -25,6 +25,13 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @user = @post.user
     @comment = Comment.new
+    
+    respond_to do |format|
+      format.html
+      # link_toメソッドをremote: trueに設定したのでリクエストはjs形式で行われる（詳しくは参照記事をご覧ください）
+      format.js
+    end
+    
   end
 
   def edit

@@ -1,5 +1,10 @@
 <div class="container mt-5 mb-5">
 
+   <!--# モーダルの周囲を薄暗くするマスク-->
+  <div id="mask" class="hidden"></div>
+  <!--# モーダル-->
+  <div id="modal" class="hidden"></div>
+
   <div id='map'></div>
 
     <style>
@@ -48,12 +53,14 @@
                 }); //ここで詳細ページへのリンクを表示させる
                 marker.addListener('click', function() {
                   infowindow.open(map, marker);
+                  showModal();
                 });
 
              })();
             <% end %>
             //複数マーカー ここまで
         }
+
       </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['SECRET_KEY'] %>&callback=initMap" async defer></script>

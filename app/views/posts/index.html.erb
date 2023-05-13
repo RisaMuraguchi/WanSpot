@@ -1,13 +1,11 @@
 <div class="card-list-container py-5" style="padding-left: 15px; padding-right: 15px; display: flex; flex-wrap: wrap;">
   <h2 class='title'>投稿一覧</h2>
-  
+
   <!--# モーダルの周囲を薄暗くするマスク-->
   <div id="mask" class="hidden"></div>
-<!--# モーダル-->
-<!--# あとからJavaScriptで<div>内のコードをshowビューのコードに置き換えます。-->
-  <div id="modal" class="hidden">
-    <p>モーダルウィンドウ<p>
-  </div>
+  <!--# モーダル-->
+  <div id="modal" class="hidden"></div>
+
 
   <%= render 'posts/index', posts: @posts %>
 

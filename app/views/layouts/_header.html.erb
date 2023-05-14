@@ -11,13 +11,16 @@
         <% if user_signed_in? %>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-              <%= link_to 'マイページ', user_path(current_user), class: 'nav-link active' %>
+              <%= link_to 'マイページ', user_path(current_user), class: 'nav-link' %>
           </li>
           <li class="nav-item">
             <%= link_to '新規投稿', new_post_path, class: 'nav-link' %>
           </li>
           <li class="nav-item">
             <%= link_to '一覧', posts_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'マップ一覧', post_map_path, class: 'nav-link' %>
           </li>
           <li class="nav-item">
             <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link' %>
@@ -36,7 +39,7 @@
         <% elsif admin_signed_in? %>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-              <%= link_to 'Home', root_path, class: 'nav-link active' %>
+              <%= link_to 'Home', root_path, class: 'nav-link' %>
           </li>
           <li class="nav-item">
             <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'nav-link' %>
@@ -52,7 +55,7 @@
         <% else %>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-              <%= link_to 'Home', root_path, class: 'nav-link active' %>
+              <%= link_to 'Home', root_path, class: 'nav-link' %>
           </li>
           <li class="nav-item">
             <%= link_to '新規登録', new_user_registration_path, class: 'nav-link' %>

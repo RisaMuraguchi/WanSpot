@@ -1,9 +1,5 @@
 <div class="container mt-5 mb-5">
-
-   <!--# モーダルの周囲を薄暗くするマスク-->
-  <div id="mask" class="hidden"></div>
-  <!--# モーダル-->
-  <div id="modal" class="hidden"></div>
+  <h2 class="text-center">マップ一覧</h2>
 
   <div id='map'></div>
 
@@ -53,7 +49,6 @@
                 }); //ここで詳細ページへのリンクを表示させる
                 marker.addListener('click', function() {
                   infowindow.open(map, marker);
-                  showModal();
                 });
 
              })();

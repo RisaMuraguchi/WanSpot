@@ -13,7 +13,15 @@
 
   <body>
     <%= render 'layouts/header' %>
+
+    <!--フラッシュメッセージ-->
+    <!--<div class="ml-5">-->
+    <!--  <div class="text-center mt-3"><h5><strong><%#= flash[:notice] %></strong></h5></div>-->
+    <!--  <div class="text-center mt-3"><h5><strong><%#= flash[:alert] %></strong></h5></div>-->
+    <!-- </div>-->
+
     <%= yield %>
-    <%#= render 'layouts/footer' %>
+    <%= render 'layouts/footer' %>
+
   </body>
 </html>

@@ -10,19 +10,28 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to post_path(@post.id), notice: "You have created post successfully."
     else
-      render :index
+      render :new
     end
   end
 
   def index
     @posts = Post.all
     @user = current_user
+    # 退会している人
+    # @posts = Post.includes(:user).where(users: { user_status: false })
   end
 
   def show
     @post = Post.find(params[:id])
     @user = @post.user
     @comment = Comment.new
+
+    respond_to do |format|
+      format.html
+      # link_toメソッドをremote: trueに設定したのでリクエストはjs形式
+      format.js
+    end
+
   end
 
   def edit
@@ -69,10 +78,24 @@ class PostsController < ApplicationController
     @hashtags = hashtags.uniq
   end
 
+  def map
+    @posts = Post.all
+  end
+
+  # 住所の自動補完
+  # def autocomplete
+  #   client = GooglePlaces::Client.new(ENV['SECRET_KEY'])
+  #   autocomplete = client.predictions_by_input(params[:term], lat: 0, lng: 0, radius: 20000000, types: 'geocode', language: :ja)
+  #   render json: "{test:test}"
+  #   # render json: autocomplete["predictions"][0]["description"].split(",")
+  # end
+
   private
 
   def post_params
-    params.require(:post).permit(:caption, :image, :user_id)
+    params.require(:post).permit(:caption, :image, :user_id, :address, :latitude, :longitude)
   end
 
 end
+
+

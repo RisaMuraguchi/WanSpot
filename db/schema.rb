@@ -86,8 +86,8 @@ ActiveRecord::Schema.define(version: 2023_05_10_115908) do
   create_table "posts", force: :cascade do |t|
     t.text "caption"
     t.string "address"
-    t.float "lat"
-    t.float "lng"
+    t.float "latitude"
+    t.float "longitude"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

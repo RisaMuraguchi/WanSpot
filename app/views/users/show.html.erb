@@ -1,6 +1,6 @@
 <div class="container mt-5 mb-5">
-  <div class="row justify-content-center">
-    <div class="col-md-8 col-lg-6">
+  <div class="row">
+    <div class="col-md-3 col-sm-3 offset-sm-1">
       <div class="card shadow-sm">
         <div class="card-header bg-white border-bottom-0">
           <%= image_tag @user.get_profile_image(100,100), class:"rounded-circle", width: "50", height: "50" %>
@@ -31,18 +31,39 @@
 
         <div class="card-footer">
           <div class="d-flex justify-content-between">
-            <%= link_to "いいねした投稿", likes_user_path(@user), class:"btn btn-outline-secondary text-left" %>
+            <%= link_to "いいねした投稿", likes_user_path(@user), class:"btn btn-outline-secondary text-left btn-sm" %>
             <% if current_user == @user && !@user.email.include?("guest") %>
-              <%= link_to "Edit Profile", edit_user_path(@user), class:"btn btn-outline-secondary" %>
+              <%= link_to "Edit Profile", edit_user_path(@user), class:"btn btn-outline-secondary btn-sm" %>
             <% end %>
           </div>
         </div>
 
       </div>
     </div>
+
+    <div class="col-md-6 col-sm-7 offset-sm-1">
+      <table class="table table-hover">
+          <thead>
+            <tr class="table text-center">
+              <th>ユーザーの投稿一覧</th>
+              <th>コメント数</th>
+              <th>いいね</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @posts.each do |post| %>
+            <tr class="table text-center">
+                <td><%= link_to post.caption, post_path(post.id), class: "link" %></td>
+                <td><%= post.comments.count %></td>
+                <td><%= post.likes.count %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+    </div>
+
+
   </div>
 </div>
 
 
-<!--自分の投稿一覧-->
-<%#= render 'post_images/list', posts: @posts %>

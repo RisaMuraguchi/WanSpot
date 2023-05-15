@@ -9,7 +9,7 @@ before_action :ensure_currect_user, only: [:edit, :update]
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      redirect_to post_path(@post.id), notice: "You have created post successfully."
+      redirect_to post_path(@post.id), notice: "投稿に成功しました"
     else
       render :new
     end
@@ -42,7 +42,7 @@ before_action :ensure_currect_user, only: [:edit, :update]
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to post_path(@post.id), notice: "You have updated post successfully."
+      redirect_to post_path(@post.id), notice: "更新に成功しました"
     else
       render :edit
     end

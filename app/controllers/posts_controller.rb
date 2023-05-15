@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+before_action :ensure_currect_user, only: [:edit, :update]
 
   def new
     @post = Post.new
@@ -75,6 +76,13 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:caption, :image, :user_id, :address, :latitude, :longitude)
+  end
+
+  def ensure_currect_user
+    @post = Post.find(params[:id])
+    unless @post == current_user
+      redirect_to user_path(current_user)
+    end
   end
 
 end

@@ -1,17 +1,34 @@
-<h1>Search Results</h1>
-
-<% if @records.present? %>
-  <% @records.each do |record| %>
-    <% if record.is_a?(Post) %>
-      <div class="post">
-        <h3><%= record.caption %></h3>
-      </div>
-    <% elsif record.is_a?(User) %>
-      <div class="user">
-        <h3><%= record.name %></h3>
-      </div>
-    <% end %>
+<div class="container mt-5 mb-5">
+  <h2 class="text-center">検索結果</h1>
+  <% if @records.present? %>
+    <div class="d-flex flex-wrap justify-content-between">
+      <% @records.each do |record| %>
+        <% if record.is_a?(Post) %>
+          <div class="card mt-4 shadow-lg" style="width: 200px; height: 300px; overflow-y: auto;">
+            <%= link_to post_path(record) do %>
+              <%= image_tag record.get_image, class:"card-img-top" %>
+            <% end %>
+            <div class="card-body" style="max-height: 200px;">
+              <div class="row">
+                <div class="col-2">
+                  <%= image_tag record.user.get_profile_image(40,40), class:"mt-2 rounded-circle" %>
+                </div>
+                <div class="col-9">
+                  <p class="card-text">caption：<%= record.caption %></p>
+                  <span> <%= record.user.name %> ｜ </span>
+                  <span><%= "#{record.comments.count} コメント" %></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% elsif record.is_a?(User) %>
+          <div class="user">
+            <h3><%= link_to record.name, user_path(record) %></h3>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <p>No results found.</p>
   <% end %>
-<% else %>
-  <p>No results found.</p>
-<% end %>
+</div>

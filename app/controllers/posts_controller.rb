@@ -53,18 +53,6 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
-  #キーワード検索
-  def search
-    # 入力した検索ワードをparams[:keyword]で取得
-    if params[:keyword].present?
-    # 投稿のキャプションで検索
-      @posts = Post.where('caption LIKE ?', "%#{params[:keyword]}%")
-      @keyword = params[:keyword]
-    else
-    # 何も入力せずに検索ボタンをクリックした場合は全ての投稿を取得
-      @posts = Post.all
-    end
-  end
 
   # ハッシュタグ
   def hashtag
@@ -82,13 +70,6 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
-  # 住所の自動補完
-  # def autocomplete
-  #   client = GooglePlaces::Client.new(ENV['SECRET_KEY'])
-  #   autocomplete = client.predictions_by_input(params[:term], lat: 0, lng: 0, radius: 20000000, types: 'geocode', language: :ja)
-  #   render json: "{test:test}"
-  #   # render json: autocomplete["predictions"][0]["description"].split(",")
-  # end
 
   private
 

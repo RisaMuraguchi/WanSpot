@@ -48,5 +48,10 @@ class User < ApplicationRecord
     end
   end
 
+  # 部分一致
+  def self.search_for(content)
+    User.where('name LIKE ?', '%'+content+'%')
+  end
+
 
 end

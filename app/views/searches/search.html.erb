@@ -1,0 +1,17 @@
+<h1>Search Results</h1>
+
+<% if @records.present? %>
+  <% @records.each do |record| %>
+    <% if record.is_a?(Post) %>
+      <div class="post">
+        <h3><%= record.caption %></h3>
+      </div>
+    <% elsif record.is_a?(User) %>
+      <div class="user">
+        <h3><%= record.name %></h3>
+      </div>
+    <% end %>
+  <% end %>
+<% else %>
+  <p>No results found.</p>
+<% end %>

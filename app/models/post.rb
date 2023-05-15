@@ -46,5 +46,11 @@ class Post < ApplicationRecord
     end
   end
 
+  # 部分一致
+  def self.search_for(content)
+    Post.where('caption LIKE ?', '%'+content+'%')
+  end
+
+
 
 end

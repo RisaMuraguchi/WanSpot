@@ -9,5 +9,8 @@
 
   <%= render 'posts/index', posts: @posts %>
 
+  <div class="mb-2 d-block mx-auto">
+  <%= paginate @posts %>
+  </div>s
 </div>
 

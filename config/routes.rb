@@ -26,14 +26,11 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments, only: [:create, :destroy]
     resource :likes, only: [:create, :destroy]
-    collection do
-      get 'search'
-    end
   end
 
+  get '/search', to: 'searches#search'
   get '/post/hashtag/:name', to: "posts#hashtag"
   get '/post/map', to: "posts#map"
-  # get 'autocomplete', to: 'posts#autocomplete'
 
   resources :users, only: [:index,:show,:edit,:update] do
     resource :relationships, only: [:create, :destroy]

@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+before_action :ensure_currect_user, only: [:edit, :update]
 
   def new
     @post = Post.new
@@ -8,14 +9,15 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      redirect_to post_path(@post.id), notice: "You have created post successfully."
+      redirect_to post_path(@post.id), notice: "投稿に成功しました"
     else
       render :new
     end
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.all.order(created_at: :desc)
+    @posts = Post.page(params[:page]).per(8)
     @user = current_user
     # 退会している人
     # @posts = Post.includes(:user).where(users: { user_status: false })
@@ -41,7 +43,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to post_path(@post.id), notice: "You have updated post successfully."
+      redirect_to post_path(@post.id), notice: "更新に成功しました"
     else
       render :edit
     end
@@ -53,18 +55,6 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
-  #キーワード検索
-  def search
-    # 入力した検索ワードをparams[:keyword]で取得
-    if params[:keyword].present?
-    # 投稿のキャプションで検索
-      @posts = Post.where('caption LIKE ?', "%#{params[:keyword]}%")
-      @keyword = params[:keyword]
-    else
-    # 何も入力せずに検索ボタンをクリックした場合は全ての投稿を取得
-      @posts = Post.all
-    end
-  end
 
   # ハッシュタグ
   def hashtag
@@ -82,18 +72,18 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
-  # 住所の自動補完
-  # def autocomplete
-  #   client = GooglePlaces::Client.new(ENV['SECRET_KEY'])
-  #   autocomplete = client.predictions_by_input(params[:term], lat: 0, lng: 0, radius: 20000000, types: 'geocode', language: :ja)
-  #   render json: "{test:test}"
-  #   # render json: autocomplete["predictions"][0]["description"].split(",")
-  # end
 
   private
 
   def post_params
     params.require(:post).permit(:caption, :image, :user_id, :address, :latitude, :longitude)
+  end
+
+  def ensure_currect_user
+    @post = Post.find(params[:id])
+    unless @post == current_user
+      redirect_to user_path(current_user)
+    end
   end
 
 end

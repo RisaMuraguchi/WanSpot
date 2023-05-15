@@ -3,12 +3,13 @@
     <div class="container-fluid px-4 px-lg-5">
       <%= link_to image_tag('logo.png'), root_path, class: 'navbar-brand' %>
 
-       <!--キーワード検索フォーム-->
+       <!--検索フォーム-->
        <% if user_signed_in? %>
         <div class="form-group text-center">
-          <%= form_with url: search_posts_path, local: true, method: :get, class: "form-inline" do |f| %>
-          <%= f.text_field :keyword, class: "form-control me-sm-3", placeholder: "キーワード検索" %>
-          <%= f.submit "Search", class: "btn btn-info btn-sm" %>
+          <%= form_with url: search_path, local: true, method: :get, class: "form-inline" do |f| %>
+          <%= f.text_field :content, class: "form-control me-sm-3", placeholder: "検索", style: "height: 50px;" %>
+          <%= f.select :model, options_for_select({ "投稿" => "post", "ユーザー" => "user" }), {}, class: "form-control", style: "height: 50px;" %>
+          <%= f.submit "Search", class: "btn btn-info btn-sm ml-3" %>
           <% end %>
         </div>
        <% end %>

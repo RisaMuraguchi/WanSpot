@@ -16,7 +16,8 @@ before_action :ensure_currect_user, only: [:edit, :update]
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.all.order(created_at: :desc)
+    @posts = Post.page(params[:page]).per(8)
     @user = current_user
     # 退会している人
     # @posts = Post.includes(:user).where(users: { user_status: false })

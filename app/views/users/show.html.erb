@@ -18,11 +18,11 @@
                 <td><%= @user.profile %></td>
               </tr>
               <tr>
-                <td><strong>Followers</strong></td>
+                <td><strong>フォロワー</strong></td>
                 <td><%= link_to @user.followers.count, user_followers_path(@user) %></td>
               </tr>
               <tr>
-                <td><strong>Following</strong></td>
+                <td><strong>フォロー</strong></td>
                 <td><%= link_to @user.followings.count, user_followings_path(@user) %></td>
               </tr>
             </tbody>

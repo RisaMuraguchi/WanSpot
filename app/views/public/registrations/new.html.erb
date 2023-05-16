@@ -1,0 +1,47 @@
+<div class="container mt-5 mb-5">
+  <%= render "public/shared/error_messages", resource: resource %>
+  <div class="row my-3">
+    <div class="col-sm-8 px-sm-0 offset-sm-2 text-center mb-3">
+      <h2><i class="fas fa-paw fa-xs"></i> SIGN UP <i class="fas fa-paw fa-xs"></i></h2>
+    </div>
+  </div>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+  <div class="row">
+      <div class="col-3 align-self-center offset-md-2 text-right form-group"><%= f.label "ニックネーム" %></div>
+      <div class="col-3"><%= f.text_field :name, :size => "20", placeholder: "ニックネーム", class: "form-control name" %></div>
+  </div>
+
+  <div class="row mt-2">
+      <div class="col-4 offset-md-1 text-right form-group"><%= f.label "メールアドレス" %></div>
+      <div class="col-3"><%= f.email_field :email, :size => "20", placeholder: "sample@example.com", class: "form-control email" %></div>
+  </div>
+
+  <div class="row mt-2">
+      <div class="col-4 offset-md-1 text-right form-group">
+        <% if @minimum_password_length %>
+          <%= f.label "パスワード(#{@minimum_password_length}文字以上)" %>
+        <% end %>
+      </div>
+      <div class="col-3"><%= f.password_field :password, class: "form-control password" %></div>
+  </div>
+
+  <div class="row mt-2">
+      <div class="col-4 offset-md-1 text-right form-group"><%= f.label "パスワード(確認用)" %></div>
+      <div class="col-3"><%= f.password_field :password_confirmation, class: "form-control password_confirmation" %></div>
+  </div>
+
+  <div class="row mt-2">
+      <div class="col-4 offset-md-1 mt-3 mb-5 mx-auto">
+        <%= f.submit "新規登録", class:"col btn btn-success" %>
+  　　</div>
+  </div>
+<% end %>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h3 class="bg-black-50">既に会員登録済みの方</h3>
+      <p><%= link_to "　こちら　", new_session_path(resource_name) %>からログインしてください。</p>
+    </div>
+  </div>
+</div>

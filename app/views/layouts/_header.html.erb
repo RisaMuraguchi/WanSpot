@@ -1,0 +1,74 @@
+<header class="sticky-top">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid px-4 px-lg-5">
+      <%= link_to image_tag('logo.png'), root_path, class: 'navbar-brand' %>
+
+       <!--検索フォーム-->
+       <% if user_signed_in? %>
+        <div class="form-group text-center">
+          <%= form_with url: search_path, local: true, method: :get, class: "form-inline" do |f| %>
+          <%= f.text_field :content, class: "form-control me-sm-3", placeholder: "検索", style: "height: 50px;" %>
+          <%= f.select :model, options_for_select({ "投稿" => "post", "ユーザー" => "user" }), {}, class: "form-control", style: "height: 50px;" %>
+          <%= f.submit "Search", class: "btn btn-info btn-sm ml-3" %>
+          <% end %>
+        </div>
+       <% end %>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarColor03">
+
+        <!--ユーザーがログインしているとき-->
+        <% if user_signed_in? %>
+        <ul class="navbar-nav ml-auto">
+          <div class="dropdown mr-4">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Menu
+            </button>
+            <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton">
+              <%= link_to 'My page', user_path(current_user), class: 'nav-link' %>
+              <%= link_to 'New', new_post_path, class: 'nav-link' %>
+              <%= link_to 'List', posts_path, class: 'nav-link' %>
+              <%= link_to 'Map', post_map_path, class: 'nav-link' %>
+              <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+            </div>
+          </div>
+        </ul>
+
+        <!--管理者がログインしているとき-->
+        <% elsif admin_signed_in? %>
+          <ul class="navbar-nav ml-auto">
+            <div class="dropdown mr-4">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Menu
+              </button>
+              <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton">
+                <%= link_to 'Home', root_path, class: 'nav-link' %>
+                <%= link_to 'Log out', destroy_admin_session_path, method: :delete, class: 'nav-link' %>
+              </div>
+            </div>
+          </ul>
+
+        <% else %>
+
+          <ul class="navbar-nav ml-auto">
+            <div class="dropdown mr-4">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Menu
+              </button>
+              <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton">
+                <%= link_to 'Home', root_path, class: 'nav-link' %>
+                <%= link_to 'Sign up', new_user_registration_path, class: 'nav-link' %>
+                <%= link_to 'Log in', new_user_session_path, class: 'nav-link' %>
+                <%= link_to 'Guest', users_guest_sign_in_path,  class: 'nav-link', method: :post %>
+              </div>
+            </div>
+          </ul>
+
+        <% end %>
+
+      </div>
+    </div>
+  </nav>
+</header>

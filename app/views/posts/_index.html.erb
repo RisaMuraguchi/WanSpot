@@ -1,0 +1,21 @@
+  <div class='post-lists' style="display: flex; justify-content: space-between; flex-wrap: wrap; width: 100%;">
+    <% posts.each do |post| %>
+      <div class="card mt-4 shadow-lg" style="width: 200px; height: 300px; overflow-y: auto;">
+        <%= link_to post_path(post.id), remote: true do %>
+          <%= image_tag post.get_image, class:"card-img-top" %>
+        <% end %>
+        <div class="card-body" style="max-height: 200px;">
+          <div class="row">
+            <div class="col-2">
+              <%= image_tag post.user.get_profile_image(40,40), class:"mt-2 rounded-circle" %>
+            </div>
+            <div class="col-9">
+              <p class="card-text">caption：<%= post.caption %></p>
+              <span> <%= post.user.name %> ｜ </span>
+              <span><%= "#{post.comments.count} コメント" %></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>

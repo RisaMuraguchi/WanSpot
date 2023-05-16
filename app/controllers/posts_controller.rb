@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-before_action :ensure_currect_user, only: [:edit, :update]
+before_action :ensure_current_user, only: [:edit, :update]
+
 
   def new
     @post = Post.new
@@ -16,8 +17,7 @@ before_action :ensure_currect_user, only: [:edit, :update]
   end
 
   def index
-    @posts = Post.all.order(created_at: :desc)
-    @posts = Post.page(params[:page]).per(8)
+    @posts = Post.page(params[:page]).per(8).order(created_at: :desc)
     @user = current_user
     # 退会している人
     # @posts = Post.includes(:user).where(users: { user_status: false })
@@ -79,12 +79,14 @@ before_action :ensure_currect_user, only: [:edit, :update]
     params.require(:post).permit(:caption, :image, :user_id, :address, :latitude, :longitude)
   end
 
-  def ensure_currect_user
+
+  def ensure_current_user
     @post = Post.find(params[:id])
-    unless @post == current_user
-      redirect_to user_path(current_user)
+    unless @post.user == current_user
+      redirect_to user_path(current_user), notice: "編集権限がありません。"
     end
   end
+
 
 end
 

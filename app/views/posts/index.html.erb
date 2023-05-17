@@ -1,6 +1,7 @@
 <div class="card-list-container py-5" style="padding-left: 15px; padding-right: 15px; display: flex; flex-wrap: wrap;">
-  <h2 class='text-center'>投稿一覧</h2>
-
+  <div class="row mx-auto">
+    <h2 class='col-md-12'>投稿一覧</h2>
+  </div>
   <!--# モーダルの周囲を薄暗くするマスク-->
   <div id="mask" class="hidden"></div>
   <!--# モーダル-->
@@ -9,8 +10,10 @@
 
   <%= render 'posts/index', posts: @posts %>
 
-  <div class="mb-2 d-block mx-auto">
-  <%= paginate @posts %>
+  <div class="row d-block mx-auto">
+    <div class="mb-2">
+    <%= paginate @posts %>
+    </div>
   </div>
 </div>
 

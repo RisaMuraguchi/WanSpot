@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   # 管理者側
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update]
-    resources :posts, param: :user_id, only: [:show, :destroy]
+    resources :posts, only: [:show, :destroy]
   end
 
   # エンドユーザー

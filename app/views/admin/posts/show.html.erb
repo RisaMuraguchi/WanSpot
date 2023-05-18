@@ -8,7 +8,7 @@
             <div class="col-10">
               <p class="card-text">caption：<%= post.caption %></p>
               <p class="card-text">name：<%= post.user.name %></p>
-              <p class="card-text"><%= link_to "削除", admin_post_path(@user, @post), method: :delete, data: { confirm: "本当に削除しますか？" } %></p>
+              <p class="card-text"><%= link_to "削除", admin_post_path(post), method: :delete, data: { confirm: "本当に削除しますか？" } %></p>
             </div>
           </div>
         </div>

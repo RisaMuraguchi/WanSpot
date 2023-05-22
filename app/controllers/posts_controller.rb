@@ -56,7 +56,7 @@ before_action :set_post, only: [:show, :edit, :update, :destroy]
     @user = current_user
     @tag = Hashtag.find_by(hashname: params[:name])
     @posts = Post.joins(:hashtags).where(hashtags: { hashname: params[:name] })
-    @hashtags = @posts.map { |post| post.caption.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/) }.flatten.uniq
+    @hashtags = @posts.map { |post| post.caption.scan(/#\p{Word}+/) }.flatten.uniq
   end
 
 

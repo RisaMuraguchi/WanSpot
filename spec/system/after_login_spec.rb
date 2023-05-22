@@ -89,6 +89,8 @@ describe 'ユーザログイン後のテスト' do
   end
 
   describe '自分の投稿詳細画面のテスト' do
+    let!(:like) { create(:like, post: post, user: user) }
+
     before do
       visit post_path(post)
     end
@@ -115,7 +117,25 @@ describe 'ユーザログイン後のテスト' do
       it '投稿した日付が表示される' do
         expect(page).to have_content post.created_at.strftime('%Y/%m/%d')
       end
+      it 'commentフォームが表示される' do
+        expect(page).to have_field 'comment[comment]'
+      end
+      it 'commentフォームに値が入っていない' do
+        expect(find_field('comment[comment]').text).to be_blank
+      end
+      it 'コメントの送信ボタンが表示される' do
+        expect(page).to have_button '送信する'
+      end
+      it 'いいね数が表示される' do
+        expect(page).to have_css("i.fa-heart")
+        expect(page).to have_content(post.likes.count)
+      end
+      it 'コメント数が表示される' do
+        expect(page).to have_css("i.fa-comment")
+        expect(page).to have_content(post.comments.count)
+      end
     end
+
 
     context '削除リンクのテスト' do
       it 'application.html.erbにjavascript_pack_tagを含んでいる' do

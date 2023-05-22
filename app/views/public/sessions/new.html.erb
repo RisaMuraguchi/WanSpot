@@ -9,7 +9,8 @@
       会員の方はこちらからログイン
     </div>
   </div>
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <!--<%#= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>-->
+  <%= form_with model: @user, url: session_path(resource_name), local: true do |f| %>
     <div class="row">
         <div class="col-5 col-md-2 px-sm-0 offset-sm-3 my-3 form-group">
           <%= f.label "メールアドレス" %>

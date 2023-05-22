@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
 before_action :ensure_current_user, only: [:edit, :update]
+before_action :set_post, only: [:show, :edit, :update, :destroy]
 
 
   def new
@@ -19,12 +20,9 @@ before_action :ensure_current_user, only: [:edit, :update]
   def index
     @posts = Post.page(params[:page]).per(8).order(created_at: :desc)
     @user = current_user
-    # 退会している人
-    # @posts = Post.includes(:user).where(users: { user_status: false })
   end
 
   def show
-    @post = Post.find(params[:id])
     @user = @post.user
     @comment = Comment.new
 
@@ -37,11 +35,9 @@ before_action :ensure_current_user, only: [:edit, :update]
   end
 
   def edit
-    @post = Post.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
     if @post.update(post_params)
       redirect_to post_path(@post.id), notice: "更新に成功しました"
     else
@@ -50,7 +46,6 @@ before_action :ensure_current_user, only: [:edit, :update]
   end
 
   def destroy
-    @post = Post.find(params[:id])
     @post.destroy
     redirect_to posts_path
   end
@@ -85,6 +80,10 @@ before_action :ensure_current_user, only: [:edit, :update]
     unless @post.user == current_user
       redirect_to user_path(current_user), notice: "編集権限がありません。"
     end
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
   end
 
 

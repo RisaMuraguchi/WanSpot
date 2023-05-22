@@ -55,13 +55,10 @@ before_action :set_post, only: [:show, :edit, :update, :destroy]
   def hashtag
     @user = current_user
     @tag = Hashtag.find_by(hashname: params[:name])
-    @posts = @tag.posts
-    hashtags = []
-    @posts.each do |post|
-      hashtags += post.caption.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
-    end
-    @hashtags = hashtags.uniq
+    @posts = Post.joins(:hashtags).where(hashtags: { hashname: params[:name] })
+    @hashtags = @posts.map { |post| post.caption.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/) }.flatten.uniq
   end
+
 
   def map
     @posts = Post.all

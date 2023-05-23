@@ -1,6 +1,16 @@
 <div class="container mt-5 mb-5">
   <h2 class="text-center">マップ一覧</h2>
 
+  <h4>
+    <% @posts.last(10).each do |post| %>
+      <% post.hashtags.each do |hashtag| %>
+        <%= link_to post_path(post.id) do %>
+          #<%= hashtag.hashname %>
+        <% end %>
+      <% end %>
+    <% end %>
+ </h4>
+
   <div id='map'></div>
 
     <style>

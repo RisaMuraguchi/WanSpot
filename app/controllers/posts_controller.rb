@@ -62,7 +62,6 @@ before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def map
     @posts = Post.all
-    @hashtags = Post.joins(:hashtags).where(hashtags: { hashname: params[:name] })
   end
 
 

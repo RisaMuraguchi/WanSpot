@@ -19,17 +19,17 @@
 
           <div class="form_group">
             <%= f.label :latitude,"緯度" %>
-            <%= f.text_field :latitude,:value =>"緯度", id: :latitude, class: "form-control latitude" %>
+            <%= f.text_field :latitude, placeholder: "緯度", id: :latitude, class: "form-control latitude" %>
           </div>
 
           <div class="form_group">
             <%= f.label :longitude,"経度" %>
-            <%= f.text_field :longitude,:value =>"経度", id: :longitude, class: "form-control longitude" %>
+            <%= f.text_field :longitude, placeholder: "経度", id: :longitude, class: "form-control longitude" %>
           </div>
 
           <div class="form-group">
             <%= f.label :caption %>
-            <%= f.text_area :caption, class: "form-control caption" %>
+            <%= f.text_area :caption, placeholder: "キャプションをここに\n#ハッシュタグ", class: "form-control caption" %>
             <div class="form-helper"></div>
           </div>
 
@@ -44,7 +44,7 @@
     <div class="col-md-6">
       <h2 class="text-center">Map</h2>
 
-      <input id="address" type="textbox" value="GeekSalon" style="width: 500px;">
+      <input id="address" type="textbox" placeholder="スポット名または住所を入力してください" style="width: 500px;">
       <input type="button" value="検索" onclick="codeAddress()" style="width: 100px;">
       <p class="text-center">マーカーをドラック＆ドロップで位置の調整ができます。<p>
       <div id='map'></div>

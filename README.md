@@ -1,4 +1,5 @@
 # WanSpot
+<img width="1438" alt="WanSpot" src="https://github.com/RisaMuraguchi/WanSpot/assets/126639980/f998ffef-0e8c-4d70-b71e-459c3a6aeef4">
 
 ## サイト概要
 ### サイトテーマ
@@ -20,7 +21,8 @@
 - ペット関連施設が、新しいお客様を呼び込むために情報を発信する時
 
 ## 設計書
-未定
+ER図
+https://drive.google.com/file/d/1zadrKb28jsAiTQRsrE5F-n6Tiw5UNiXX/view?usp=share_link
 
 ## 開発環境
 - OS：Linux(CentOS)

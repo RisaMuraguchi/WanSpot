@@ -32,4 +32,5 @@ https://drive.google.com/file/d/1zadrKb28jsAiTQRsrE5F-n6Tiw5UNiXX/view?usp=share
 - IDE：Cloud9
 
 ## 使用素材
-使用検討中です
+画像使用元URL一覧
+- Pixabay (https://pixabay.com/ja/)

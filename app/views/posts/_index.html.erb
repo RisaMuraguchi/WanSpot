@@ -7,7 +7,7 @@
           <%= image_tag post.get_image, class:"card-img-top", style:"width: 100%; height: 240px; object-fit: cover;" %>
         <% end %>
         <div class="card-body" style="max-height: 200px;">
-          <%= image_tag post.user.get_profile_image(40,40), class:"mt-2 rounded-circle" %>
+          <%= image_tag post.user.get_profile_image(40,40), class:"mt-2 rounded-circle", width: "40", height: "40" %>
           <p class="card-text">caption：<%= post.caption %></p>
           <span> <%= post.user.name %> ｜ </span>
           <span><%= "#{post.comments.count} コメント" %></span>

@@ -8,8 +8,8 @@
         <% end %>
         <div class="card-body" style="max-height: 200px;">
           <%= image_tag post.user.get_profile_image(40,40), class:"mt-2 rounded-circle", width: "40", height: "40" %>
+          <span> <%= post.user.name %></span>
           <p class="card-text">caption：<%= post.caption %></p>
-          <span> <%= post.user.name %> ｜ </span>
           <span><%= "#{post.comments.count} コメント" %></span>
         </div>
       </div>

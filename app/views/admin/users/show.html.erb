@@ -18,18 +18,18 @@
                 <td><%= @user.profile %></td>
               </tr>
               <tr>
-                <td><strong>Followers</strong></td>
-                <td><%= link_to @user.followers.count, user_followers_path(@user) %></td>
-              </tr>
-              <tr>
-                <td><strong>Following</strong></td>
-                <td><%= link_to @user.followings.count, user_followings_path(@user) %></td>
+                <th>会員ステータス</th>
+                <% if @user.user_status == true %>
+                  <td>有効</td>
+                <% else %>
+                  <td>退会</td>
+                <% end %>
               </tr>
             </tbody>
           </table>
         </div>
           <div class="card-footer bg-white text-right">
-            <%= link_to "Edit Profile", edit_admin_user_path(@user), class:"btn btn-outline-secondary" %>
+            <%= link_to "編集", edit_admin_user_path(@user), class:"btn btn-outline-secondary" %>
             <%= link_to "投稿一覧", admin_post_path(@user.id), class: "btn btn-outline-secondary" %>
           </div>
       </div>

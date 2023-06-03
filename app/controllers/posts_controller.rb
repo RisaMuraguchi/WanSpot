@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-before_action :ensure_current_user, only: [:edit, :update]
+before_action :ensure_current_user, only: [:edit, :update, :destroy]
 before_action :set_post, only: [:show, :edit, :update, :destroy]
 
 

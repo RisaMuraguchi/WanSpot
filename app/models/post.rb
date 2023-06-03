@@ -11,6 +11,9 @@ class Post < ApplicationRecord
 
   validates :caption, presence: true
   validates :image, presence: true
+  validates :address, presence: true
+  validates :latitude, presence: true
+  validates :longitude, presence: true
 
   def liked_by?(user)
     likes.where(user_id: user.id).exists?

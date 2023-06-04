@@ -23,7 +23,7 @@ class CommentsController < ApplicationController
   def ensure_current_user
     @comment = Comment.find(params[:id])
     unless @comment.user == current_user
-      redirect_to post_path(params[:post_id])
+    redirect_to post_path(params[:post_id])
     end
   end
 

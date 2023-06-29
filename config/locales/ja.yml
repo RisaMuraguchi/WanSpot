@@ -2,14 +2,12 @@ ja:
   activerecord:
     models:
       user: ユーザー
-    attributes:
-       user:
-         name: ニックネーム
-    models:
       post: 投稿
     attributes:
-       post:
-         caption: キャプション
-         address: スポット名
-         latitude: 緯度
-         longitude: 経度
+      user:
+        name: ニックネーム
+      post:
+        caption: キャプション
+        address: スポット名
+        latitude: 緯度
+        longitude: 経度

@@ -5,3 +5,11 @@ ja:
     attributes:
        user:
          name: ニックネーム
+    models:
+      post: 投稿
+    attributes:
+       post:
+         caption: キャプション
+         address: スポット名
+         latitude: 緯度
+         longitude: 経度

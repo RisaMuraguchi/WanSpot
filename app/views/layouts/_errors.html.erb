@@ -1,0 +1,9 @@
+<% if post.errors.any? %>
+  <p><%= post.errors.count %>件のエラーが発生しました</p>
+  <ul>
+    <% post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
